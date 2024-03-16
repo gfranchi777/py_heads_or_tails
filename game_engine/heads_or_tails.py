@@ -23,6 +23,9 @@ class HeadsOrTails:
         self.print_results()
 
     def get_formatted_flips_duration(self) -> str:
+        """
+        Function: get_formatted_flips_duration
+        """
         if self._flips_duration < 1:
             formatted_duration = f"{self._flips_duration * 1000:.2f} Milliseconds"
         elif self._flips_duration < 60:
@@ -35,6 +38,9 @@ class HeadsOrTails:
         return formatted_duration
 
     def flip(self) -> None:
+        """
+        Function: flip
+        """
         print(f"Flipping A Coin {self._num_flips:,} Times.\n")
 
         start_time = time.time()
@@ -52,6 +58,9 @@ class HeadsOrTails:
         self._tails_percentage = round((self._tails_counter / self._num_flips) * 100, 5)
     
     def is_valid_num_flips(self, num_flips: int) -> bool:
+        """
+        Function: is_valid_num_flips
+        """
         try:
             self._num_flips = int(num_flips)
             
@@ -64,6 +73,9 @@ class HeadsOrTails:
             return False
 
     def print_results(self) -> None:
+        """
+        Function: print_results
+        """
         print(f"It Took {self.get_formatted_flips_duration()} To Run The {self._num_flips:,} Coin Flips.\n")
         
         print(f"Total Number Of Heads: {self._heads_counter:,}")
