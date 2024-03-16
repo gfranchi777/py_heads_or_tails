@@ -28,9 +28,9 @@ class HeadsOrTails:
         elif self._flips_duration < 60:
             formatted_duration = f"{self._flips_duration:.2f} Seconds"
         else:
-            minutes = self._flips_duration // 60
-            seconds = self._flips_duration % 60
-            formatted_duration = f"{minutes:.0f}:{seconds:.2f} Minutes"
+            minutes = int(self._flips_duration // 60)
+            seconds = int(self._flips_duration % 60)
+            formatted_duration = f"{minutes:02d}:{seconds:02d} Minutes"
     
         return formatted_duration
 
@@ -48,8 +48,8 @@ class HeadsOrTails:
         self._heads_counter = flips.count(self._heads)
         self._tails_counter = self._num_flips - self._heads_counter
 
-        self._heads_percentage = self._heads_counter / self._num_flips * 100
-        self._tails_percentage = self._tails_counter / self._num_flips * 100
+        self._heads_percentage = round((self._heads_counter / self._num_flips) * 100, 5)
+        self._tails_percentage = round((self._tails_counter / self._num_flips) * 100, 5)
     
     def is_valid_num_flips(self, num_flips: int) -> bool:
         try:
@@ -67,6 +67,6 @@ class HeadsOrTails:
         print(f"It Took {self.get_formatted_flips_duration()} To Run The {self._num_flips:,} Coin Flips.\n")
         print(f"Total Num Heads: {self._heads_counter:,}")
         print(f"Total Num Tails: {self._tails_counter:,}")
-        print(f"% Of Head Flips: {self._heads_percentage:.2f}")
-        print(f"% Of Tail Flips: {self._tails_percentage:.2f}")
+        print(f"% Of Head Flips: {self._heads_percentage}")
+        print(f"% Of Tail Flips: {self._tails_percentage}")
 
