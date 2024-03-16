@@ -3,6 +3,7 @@ Module: heads_or_tails_simple.py
 """
 import random
 import sys
+import time
 
 class HeadsOrTailsSimple:
     """
@@ -22,23 +23,38 @@ class HeadsOrTailsSimple:
             print(f"\nValue \"{num_flips}\" Is Not A Valid Number Of Flips.")
             sys.exit(1)
 
-        # Perform the coin flips
+        # Perform the coin flips and get the duration time of the flips
+        print(f"Flipping A Coin {num_flips:,} Times.\n")
+        start_time = time.time()
+
         flips = random.choices([heads, tails], k = num_flips)
         
+        end_time = time.time()
+
         # Populate the statistic variables
         heads_counter = flips.count(heads)
         tails_counter = num_flips - heads_counter
 
-        heads_percentage = heads_counter / num_flips * 100
-        tails_percentage = tails_counter / num_flips * 100
+        heads_percentage = round((heads_counter / num_flips) * 100, 4)
+        tails_percentage = round((tails_counter / num_flips) * 100, 4)
+
+        # Calculate and format the flips duration time
+        flips_duration = end_time - start_time
+
+        if flips_duration < 1:
+            formatted_duration = f"{flips_duration * 1000:.2f} Milliseconds"
+        elif flips_duration < 60:
+            formatted_duration = f"{flips_duration:.2f} Seconds"
+        else:
+            minutes = int(flips_duration // 60)
+            seconds = int(flips_duration % 60)
+            formatted_duration = f"{minutes:02d}:{seconds:02d} Minutes"
 
         # Print the results to the console
-        print("")
-        print(f"Flipping A Coin {heads_or_tails.num_flips:,} Times.")
-        print("")
-        print(f"Total Num Heads: {heads_counter:,}")
-        print(f"Total Num Tails: {tails_counter:,}")
-        print("")
-        print(f"Percentage Of Heads: {heads_percentage:.2f}")
-        print(f"Percentage Of Tails: {tails_percentage:.2f}")
-
+        print(f"It Took {formatted_duration} To Run The {num_flips:,} Coin Flips.\n")
+        
+        print(f"Total Number Of Heads: {heads_counter:,}")
+        print(f"Total Number Of Tails: {tails_counter:,}\n")
+        
+        print(f"Percentage Of Head Flips: {heads_percentage}%")
+        print(f"Percentage Of Tail Flips: {tails_percentage}%")

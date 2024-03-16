@@ -65,8 +65,10 @@ class HeadsOrTails:
 
     def print_results(self) -> None:
         print(f"It Took {self.get_formatted_flips_duration()} To Run The {self._num_flips:,} Coin Flips.\n")
-        print(f"Total Num Heads: {self._heads_counter:,}")
-        print(f"Total Num Tails: {self._tails_counter:,}")
-        print(f"% Of Head Flips: {self._heads_percentage}")
-        print(f"% Of Tail Flips: {self._tails_percentage}")
+        
+        print(f"Total Number Of Heads: {self._heads_counter:,}")
+        print(f"Total Number Of Tails: {self._tails_counter:,}\n")
+        
+        print(f"Percentage Of Head Flips: {self._heads_percentage}%")
+        print(f"Percentage Of Tail Flips: {self._tails_percentage}%")
 
