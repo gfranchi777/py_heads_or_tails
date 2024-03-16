@@ -24,13 +24,13 @@ class HeadsOrTails:
 
     def get_formatted_flips_duration(self) -> str:
         if self._flips_duration < 1:
-            formatted_duration = f"{self._flips_duration * 1000:.2f} milliseconds"
+            formatted_duration = f"{self._flips_duration * 1000:.2f} Milliseconds"
         elif self._flips_duration < 60:
-            formatted_duration = f"{self._flips_duration:.2f} seconds"
+            formatted_duration = f"{self._flips_duration:.2f} Seconds"
         else:
             minutes = self._flips_duration // 60
             seconds = self._flips_duration % 60
-            formatted_duration = f"{minutes:.0f}:{seconds:.2f} minutes"
+            formatted_duration = f"{minutes:.0f}:{seconds:.2f} Minutes"
     
         return formatted_duration
 
