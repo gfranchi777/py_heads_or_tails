@@ -2,14 +2,26 @@
 Module: heads_or_tails_simple.py
 """
 import random
+import sys
 
 class HeadsOrTailsSimple:
     """
     Class: HeadsOrTailsSimple
     """
     def __init__(self, num_flips: int) -> None:
+        try:
+            num_flips = int(num_flips)
+
+            if num_flips < 1:
+                raise ValueError
+        except ValueError:
+            print(f"\nValue \"{num_flips}\" Is Not A Valid Number Of Flips.")
+            sys.exit(1)
+
         heads = 0
         tails = 1
+
+        print(f"\nFlipping A Coin {num_flips:,} Times.\n")
 
         flips = random.choices([heads, tails], k = num_flips)
         
