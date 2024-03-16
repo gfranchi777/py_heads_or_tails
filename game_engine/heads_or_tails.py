@@ -3,6 +3,7 @@ Module: heads_or_tails.py
 """
 import random
 import sys
+import time
 
 class HeadsOrTails:
     """
@@ -19,33 +20,42 @@ class HeadsOrTails:
         self._tails_counter = 0
 
         self.flip()
-        self.print_stats()
+        self.print_results()
 
-    @property
-    def heads_counter(self) -> int:
-        return self._heads_counter
-
-    @property
-    def num_flips(self) -> int:
-        return self._num_flips
-
-    @property
-    def tails_counter(self) -> int:
-        return self._tails_counter
+    def get_formatted_flips_duration(self) -> str:
+        if self._flips_duration < 1:
+            formatted_duration = f"{self._flips_duration * 1000:.2f} milliseconds"
+        elif self._flips_duration < 60:
+            formatted_duration = f"{self._flips_duration:.2f} seconds"
+        else:
+            minutes = self._flips_duration // 60
+            seconds = self._flips_duration % 60
+            formatted_duration = f"{minutes:.0f}:{seconds:.2f} minutes"
+    
+        return formatted_duration
 
     def flip(self) -> None:
-        print(f"\nFlipping A Coin {self.num_flips:,} Times.\n")
+        print(f"Flipping A Coin {self._num_flips:,} Times.\n")
+
+        start_time = time.time()
 
         flips = random.choices([self._heads, self._tails], k = self._num_flips)
         
+        end_time = time.time()
+
+        self._flips_duration = end_time - start_time
+
         self._heads_counter = flips.count(self._heads)
         self._tails_counter = self._num_flips - self._heads_counter
 
+        self._heads_percentage = self._heads_counter / self._num_flips * 100
+        self._tails_percentage = self._tails_counter / self._num_flips * 100
+    
     def is_valid_num_flips(self, num_flips: int) -> bool:
         try:
             self._num_flips = int(num_flips)
             
-            if self.num_flips < 1:
+            if self._num_flips < 1:
                 raise ValueError
 
             return True
@@ -53,13 +63,10 @@ class HeadsOrTails:
             print(f"\nValue \"{num_flips}\" Is Not A Valid Number Of Flips.")
             return False
 
-    def print_stats(self) -> None:
-        heads_percentage = self._heads_counter / self._num_flips * 100
-        tails_percentage = self._tails_counter / self._num_flips * 100
-
+    def print_results(self) -> None:
+        print(f"It Took {self.get_formatted_flips_duration()} To Run The {self._num_flips:,} Coin Flips.\n")
         print(f"Total Num Heads: {self._heads_counter:,}")
         print(f"Total Num Tails: {self._tails_counter:,}")
-        print("")
-        print(f"Percentage Of Heads: {heads_percentage:.2f}")
-        print(f"Percentage Of Tails: {tails_percentage:.2f}")
+        print(f"% Of Head Flips: {self._heads_percentage:.2f}")
+        print(f"% Of Tail Flips: {self._tails_percentage:.2f}")
 
