@@ -76,7 +76,7 @@ class HeadsOrTailsSimple:
         print(f"Total Number Of Tails: {tails_counter:,}\n")
         
         print(f"Percentage Of Head Flips: {heads_percentage}%")
-        print(f"Percentage Of Tail Flips: {tails_percentage}%")
+        print(f"Percentage Of Tail Flips: {tails_percentage}%\n")
 
         print(f"It Took {formatted_calculate_stats_duration} To Calculate The Statisticsn.\n")
 
