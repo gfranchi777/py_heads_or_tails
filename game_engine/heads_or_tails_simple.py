@@ -1,7 +1,7 @@
 """
 Module: heads_or_tails_simple.py
 """
-import random
+import numpy as np
 import sys
 import time
 
@@ -23,20 +23,19 @@ class HeadsOrTailsSimple:
             print(f"\nValue \"{num_flips}\" Is Not A Valid Number Of Flips.")
             sys.exit(1)
 
-        # Perform the coin flips and get the duration time of the flips
         print(f"Flipping A Coin {num_flips:,} Times.\n")
-        start_time = time.time()
-
-        flips = random.choices([heads, tails], k = num_flips)
         
+        # Perform the coin flips and get the duration time of the flips
+        start_time = time.time()
+        flips = np.random.randint(2, size = num_flips)
         end_time = time.time()
 
         # Populate the statistic variables
-        heads_counter = flips.count(heads)
+        heads_counter = np.sum(flips == 0)
         tails_counter = num_flips - heads_counter
 
-        heads_percentage = round((heads_counter / num_flips) * 100, 4)
-        tails_percentage = round((tails_counter / num_flips) * 100, 4)
+        heads_percentage = round((heads_counter / num_flips) * 100, 5)
+        tails_percentage = round((tails_counter / num_flips) * 100, 5)
 
         # Calculate and format the flips duration time
         flips_duration = end_time - start_time
