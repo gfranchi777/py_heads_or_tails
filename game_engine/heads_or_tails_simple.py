@@ -27,33 +27,56 @@ class HeadsOrTailsSimple:
         
         # Perform the coin flips and get the duration time of the flips
         start_time = time.time()
+        
         flips = np.random.randint(2, size = num_flips)
+        
         end_time = time.time()
 
-        # Populate the statistic variables
+        flips_duration = end_time - start_time
+        
+        # Populate the statistic variables and get the calculation duration time
+        start_time = time.time()
+        
         heads_counter = np.sum(flips == 0)
+        
         tails_counter = num_flips - heads_counter
 
         heads_percentage = round((heads_counter / num_flips) * 100, 5)
+        
         tails_percentage = round((tails_counter / num_flips) * 100, 5)
 
-        # Calculate and format the flips duration time
-        flips_duration = end_time - start_time
+        end_time = time.time()
 
+        calculate_stats_duration = end_time - start_time
+
+        # Format the flips duration time
         if flips_duration < 1:
-            formatted_duration = f"{flips_duration * 1000:.2f} Milliseconds"
+            formatted_flips_duration = f"{flips_duration * 1000:.2f} Milliseconds"
         elif flips_duration < 60:
-            formatted_duration = f"{flips_duration:.2f} Seconds"
+            formatted_flips_duration = f"{flips_duration:.2f} Seconds"
         else:
             minutes = int(flips_duration // 60)
             seconds = int(flips_duration % 60)
-            formatted_duration = f"{minutes:02d}:{seconds:02d} Minutes"
+            formatted_flips_duration = f"{minutes:02d}:{seconds:02d} Minutes"
 
+        # Format the calculate stats duration
+        if calculate_stats_duration < 1:
+            formatted_calculate_stats_duration = f"{flips_duration * 1000:.2f} Milliseconds"
+        elif calculate_stats_duration < 60:
+            formatted_calculate_stats_duration = f"{flips_duration:.2f} Seconds"
+        else:
+            minutes = int(calculate_stats_duration // 60)
+            seconds = int(calculate_stats_duration % 60)
+            formatted_calculate_stats_duration = f"{minutes:02d}:{seconds:02d} Minutes"
+        
         # Print the results to the console
-        print(f"It Took {formatted_duration} To Run The {num_flips:,} Coin Flips.\n")
+        print(f"It Took {formatted_flips_duration} To Run The {num_flips:,} Coin Flips.\n")
         
         print(f"Total Number Of Heads: {heads_counter:,}")
         print(f"Total Number Of Tails: {tails_counter:,}\n")
         
         print(f"Percentage Of Head Flips: {heads_percentage}%")
         print(f"Percentage Of Tail Flips: {tails_percentage}%")
+
+        print(f"It Took {formatted_calculate_stats_duration} To Calculate The Statisticsn.\n")
+
