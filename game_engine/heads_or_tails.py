@@ -59,7 +59,7 @@ class HeadsOrTails:
             formatted_time = f"{minutes:02d}:{seconds:02d} Minutes"
     
         return formatted_time
-
+    
     def flip(self) -> None:
         """
         Function: flip
