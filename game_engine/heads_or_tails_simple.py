@@ -1,14 +1,14 @@
-"""
+'''
 Module: heads_or_tails_simple.py
-"""
+'''
 import numpy as np
 import sys
 import time
 
 class HeadsOrTailsSimple:
-    """
+    '''
     Class: HeadsOrTailsSimple
-    """
+    '''
     def __init__(self, num_flips: int) -> None:
         # Make sure that the num_flips are a valid integer value greater than 0
         try:
